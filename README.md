@@ -51,7 +51,7 @@ The [build guide](BUILD_ANDROID.md) contains the full commands, firmware-font re
 
 ## Performance on the AYN Thor
 
-On my AYN Thor, I get **50–60 fps at 1080p (1920 × 1080)** with Turnip 27.
+On AYN Thor, Z-A runs at **50–60 fps at 1080p (1920 × 1080)** with Turnip 27.
 
 | Item | Local observation |
 |---|---|
@@ -67,7 +67,7 @@ Performance varies by scene, driver and shader cache. First-use shader compilati
 
 ![Project-authored Z-A video settings UI, showing illustrative 1080p and 60-FPS choices](docs/images/video-settings.png)
 
-*Settings menu preview, rendered from the app's HTML. The values shown are examples.*
+*Settings menu preview, rendered from the HTML settings interface. The values shown are examples.*
 
 Press **L3 + R3 together** on the AYN Thor to open the menu. Use the D-pad to choose a row and left/right to change it. **Y applies**; **B goes back**.
 
