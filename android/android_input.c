@@ -166,7 +166,7 @@ void runtime_rumble_set(unsigned side, float amp_low, float freq_low, float amp_
 int runtime_motion_read(RuntimeMotionState *out, int max) { (void)out; (void)max; return 0; }
 void runtime_motion_start(void) {}
 
-/* Controller configuration a Pokémon title sets up (Legends Z-A 2.0.2). The Thor has one built-in controller that is
+/* Controller configuration a Legends Z-A title sets up (Legends Z-A 2.0.2). The Thor has one built-in controller that is
    never split into Joy-Cons: the settings are kept and read back, assignment changes have nothing to move, and the
    controller keeps its one player LED and fixed colours. */
 static int handheld_activation, communication_mode = 3;   /* NpadHandheldActivationMode_Dual, NpadCommunicationMode_Default */

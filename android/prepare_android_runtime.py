@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate private loader tables from verified Pokémon Legends Z-A modules."""
+"""Generate private loader tables from verified Legends Z-A modules."""
 import argparse
 import hashlib
 import json
@@ -137,7 +137,7 @@ def main():
         raise ValueError("Android rewrites are stale; rerun patch_nso.py with DM_THREAD_POINTER_REGISTER=tpidr_el0")
     modules = [prepare_module(name, version, rewritten, extraction)
                for name in ("main", "sdk")]
-    lines = ["/* Generated from verified Pokémon Legends Z-A files; do not commit. */"]
+    lines = ["/* Generated from verified Legends Z-A files; do not commit. */"]
     for n, module in enumerate(modules):
         lines.append(f"static const Reloc android_reloc_{n}[] = {{")
         lines.extend(f"{{{r['where']}ULL,{r['kind']},{r['symbol']},{r['addend']}LL}}," for r in module["relocs"])

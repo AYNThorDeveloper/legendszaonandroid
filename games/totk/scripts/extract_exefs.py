@@ -174,7 +174,7 @@ def program_nca(records, update=False):
     require(len(programs) == 1, 'Expected one base Program NCA; updates, DLC and combined packages are unsupported')
     record, hdr = programs[0]
     require(record['title_id'] == '0100F43008C44000',
-            'Expected Pokémon Legends Z-A base game; updates, DLC and other games are unsupported')
+            'Expected Legends Z-A base game; updates, DLC and other games are unsupported')
     return record, hdr
 
 

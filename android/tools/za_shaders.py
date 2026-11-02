@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Every NVN shader of Pokémon Legends: Z-A, read from the verified RomFS (2.0.2 merged with the base game).
+"""Every NVN shader of Legends: Z-A, read from the verified RomFS (2.0.2 merged with the base game).
 
 Trinity keeps its files in arc/data.trpfs: "ONEPACK\\0", the offset of a FlatBuffer {pack hashes, pack offsets}, and
 at each offset a pack (FlatBuffer {file hashes, files}); a file is a table {.., compression (i8, -1 none), ..,

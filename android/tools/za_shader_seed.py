@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Translate every shader of Pokémon Legends: Z-A ahead of play, so the Thor needs no Mac.
+"""Translate every shader of Legends: Z-A ahead of play, so the Thor needs no Mac.
 
 The shaders come from za_shaders: the BNSH files inside the Trinity packs of the verified RomFS (decompressed with the
 game's own Oodle). Reading them from a dump directory (one decompressed file per BNSH-holding Trinity file, written by

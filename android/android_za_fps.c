@@ -1,4 +1,4 @@
-/* Pokémon Legends Z-A 60 FPS mode. The game's frame clock reads its "vsyncs per frame - 1" byte (1 on the Switch:
+/* Legends Z-A 60 FPS mode. The game's frame clock reads its "vsyncs per frame - 1" byte (1 on the Switch:
  * 30 FPS) with ldrsb w20, [x9, #0x20]; it sets the present interval from it and steps every subsystem by
  * max(that, the vsyncs that really passed). At 0 the game presents every vsync and steps its world 1/60 s, so it
  * keeps its speed (found by Hexveil404/PokeZ-ARecomp, tools/patches.py ZA_BUILDS; there 2.0.0 +0x1b29cf8).

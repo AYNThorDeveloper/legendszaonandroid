@@ -45,7 +45,7 @@ typedef void (*NVNT_nvnQueueBuilderSetComputeMemorySize)(NVNqueueBuilder*, size_
 typedef void (*NVNT_nvnQueueBuilderSetControlMemorySize)(NVNqueueBuilder*, size_t);
 typedef size_t (*NVNT_nvnQueueBuilderGetQueueMemorySize)(const NVNqueueBuilder*);
 typedef void (*NVNT_nvnQueueBuilderSetQueueMemory)(NVNqueueBuilder*, void*, size_t);
-/* ABI observed in Pokémon 2.0.2: builder pointer and 32-bit priority. */
+/* ABI observed in Legends Z-A 2.0.2: builder pointer and 32-bit priority. */
 typedef void (*NVNT_nvnQueueBuilderSetQueuePriority)(NVNqueueBuilder*, int);
 typedef void (*NVNT_nvnQueueBuilderSetCommandFlushThreshold)(NVNqueueBuilder*, size_t);
 typedef NVNboolean (*NVNT_nvnQueueInitialize)(NVNqueue*, const NVNqueueBuilder*);
