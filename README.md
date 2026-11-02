@@ -29,7 +29,9 @@ A native ARM64 runtime for Android, with a Vulkan renderer and on-device shader 
 
 | | Reference configuration |
 |---|---|
-| **Device** | **AYN Thor · Snapdragon 8 Gen 2 · ARM64** |
+| **Reference device** | **AYN Thor** |
+| **SoC** | Snapdragon 8 Gen 2 · ARM64 |
+| **GPU** | **Qualcomm Adreno 740** |
 | **Supported game input** | Z-A **2.0.2** |
 | **Reported performance** | **50–60 fps at 1080p**, confirmed by the project owner |
 | **Graphics** | Vulkan · Turnip 27 in local testing |
@@ -53,7 +55,7 @@ The [build guide](BUILD_ANDROID.md) contains the full commands, firmware-font re
 
 | Item | Local observation |
 |---|---|
-| Reference hardware | AYN Thor, Snapdragon 8 Gen 2 |
+| Reference hardware | AYN Thor · Snapdragon 8 Gen 2 · Adreno 740 |
 | Driver | Turnip 27; no driver binary bundled |
 | Resolution | 1080p, confirmed by the project owner |
 | Audio | Working; confirmed on 31 October 2026 |
