@@ -98,7 +98,7 @@ Similar animation and missing-object problems were observed on both 1.0.2 and 2.
 - **Audio:** the earlier missing-audio issue is fixed.
 - **Local shader translation:** supported, but an empty-cache run still needs more testing.
 - **Other hardware/drivers:** compatibility beyond the AYN Thor reference configuration is unverified.
-- **Full-game coverage:** this is not a complete playthrough compatibility report.
+- **Full-game coverage:** a complete playthrough has not been tested.
 
 </details>
 
