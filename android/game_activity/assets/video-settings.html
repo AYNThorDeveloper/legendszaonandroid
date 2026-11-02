@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<style>
+:root{color-scheme:dark;--paper:#f1eee7;--muted:#aaa9a6;--rule:#ffffff24;--gold:#e8c978;--red:#c94732;--panel:#11151ded}
+*{box-sizing:border-box}
+html,body{width:100%;height:100%;margin:0;overflow:hidden}
+body{background:rgba(3,6,10,.68);color:var(--paper);font-family:Arial,"Noto Sans",sans-serif;text-shadow:0 1px 2px #000}
+button{font:inherit;color:inherit}
+.shell{position:absolute;inset:4.5vh 5vw;background:var(--panel);border:1px solid #ffffff35;box-shadow:0 1.5vh 7vh #000a;display:grid;grid-template-rows:auto 1fr auto;overflow:hidden}
+.shell:before{content:"";height:3px;position:absolute;inset:0 0 auto;background:linear-gradient(90deg,#7b2825,var(--red) 38%,#eda13d 72%,#f0d88d)}
+header{min-height:13vh;padding:2.7vh 3.3vw 2.1vh;display:flex;align-items:center;gap:1.5vw;border-bottom:1px solid var(--rule);background:linear-gradient(110deg,#23252a 0%,#171a20 60%,#20191b 100%)}
+.crest{width:6vh;height:6vh;min-width:40px;min-height:40px;border:1px solid #f1d68c;border-radius:50%;display:grid;place-items:center;color:#f4d88e;font-weight:bold;font-size:1.45vh;letter-spacing:.08em;box-shadow:inset 0 0 0 4px #ffffff08,0 0 18px #df94331e}
+.heading{flex:1}.eyebrow,.section-label{font-size:1.45vh;letter-spacing:.2em;text-transform:uppercase;color:#d1b56e}
+h1{font-size:3.2vh;font-weight:400;letter-spacing:.035em;margin:.7vh 0 0}
+.screen-info{text-align:right;color:var(--muted);font-size:1.35vh;letter-spacing:.12em;text-transform:uppercase}
+.screen-info strong{display:block;margin-top:.7vh;color:var(--paper);font-weight:400;font-size:2.1vh;letter-spacing:.03em}
+.content{min-height:0;display:grid;grid-template-columns:minmax(0,1.55fr) minmax(260px,.78fr);gap:3vw;padding:3.3vh 3.3vw 2vh}
+.settings{min-width:0}.section-label{margin:0 0 1.5vh 1vw}
+.row{min-height:10.3vh;margin:.75vh 0;display:grid;grid-template-columns:4.2vw minmax(0,1fr) minmax(190px,37%);align-items:center;gap:1vw;padding:1vh 1.2vw;background:linear-gradient(100deg,#ffffff08,#ffffff02);border:1px solid #ffffff18;transition:background .12s,border-color .12s,transform .12s}
+.row.selected{border-color:#f1d68c;background:linear-gradient(100deg,#292a2d 0%,#63302b 70%,#9a4a28 100%);box-shadow:inset 3px 0 var(--gold),0 0 22px #d8843826;transform:translateX(.2vw)}
+.number{font-size:1.55vh;letter-spacing:.13em;color:#a7a29a;text-align:center}.selected .number{color:#f1d68c}
+.label{font-size:2.15vh;letter-spacing:.025em}.sub{display:block;margin-top:.7vh;color:#bbb8b3;font-size:1.45vh;line-height:1.35;letter-spacing:0}
+.change{display:flex;align-items:center;justify-content:flex-end;gap:.65vw;white-space:nowrap}
+.step{width:4.6vh;height:4.6vh;min-width:34px;min-height:34px;border:1px solid #ffffff43;background:#10131880;color:#f2d68e;font-size:2.9vh;line-height:1;display:grid;place-items:center;cursor:pointer}
+.step:active{background:#c94732}.value{min-width:9.5vw;text-align:center;font-size:2.05vh;letter-spacing:.03em}
+.details{align-self:stretch;display:flex;flex-direction:column;padding:3vh 2.2vw;background:linear-gradient(155deg,#202229e8,#14171de8);border:1px solid #ffffff1d}
+.details .eyebrow{margin-bottom:1.2vh}.details h2{font-size:2.5vh;font-weight:400;margin:0 0 2vh;padding-bottom:1.5vh;border-bottom:1px solid var(--rule)}
+.description{font-size:1.7vh;color:#dedbd4;line-height:1.6;min-height:9vh}.hint{margin-top:auto;padding-top:2vh;border-top:1px solid var(--rule);font-size:1.45vh;color:#b6b2aa;line-height:1.6}.hint strong{color:#f0d58b;font-weight:400}
+.notice{min-height:2.4vh;margin:1.3vh 1vw 0;color:#efd38c;font-size:1.5vh;line-height:1.4}.notice.error{color:#ff9b87}.notice.success{color:#b9e5c8}
+footer{min-height:8vh;padding:1.5vh 3.3vw;display:flex;align-items:center;gap:1.2vw;border-top:1px solid var(--rule);background:#0e1116a8}
+.prompt{display:flex;align-items:center;gap:.6vw;color:#c7c2b8;font-size:1.5vh;white-space:nowrap}.key{width:3.1vh;height:3.1vh;min-width:25px;min-height:25px;display:inline-grid;place-items:center;border:1px solid #f1eee7;border-radius:50%;color:#fff;font-size:1.35vh}
+.spacer{flex:1}.footer-button{min-height:4.5vh;padding:.7vh 1.4vw;border:1px solid #ffffff46;background:#ffffff08;font-size:1.5vh;cursor:pointer}.footer-button.apply{border-color:#e8c97899;color:#f1d68c;background:#8c5a231c}.footer-button:active{background:#c94732}
+@media(max-width:850px){.shell{inset:3vh 3vw}.content{grid-template-columns:minmax(0,1fr) minmax(210px,.72fr);gap:2vw;padding:2.5vh 2vw}.row{grid-template-columns:4vw minmax(0,1fr) minmax(150px,39%);gap:.5vw;padding:1vh .8vw}.value{min-width:10vw}header{padding-left:2vw;padding-right:2vw}}
+@media(max-height:650px){.shell{inset:3vh 4vw}.content{padding-top:2vh;padding-bottom:1vh}.row{min-height:11vh}.details{padding:2vh 2vw}footer{min-height:7vh}.sub{font-size:1.35vh}}
+</style>
+</head>
+<body>
+<section class="shell" aria-label="Paramètres vidéo">
+  <header>
+    <div class="crest" aria-hidden="true">Z·A</div>
+    <div class="heading"><div class="eyebrow">Options　/　Affichage</div><h1>Paramètres vidéo</h1></div>
+    <div class="screen-info">Sortie active<strong id="active-output">—</strong></div>
+  </header>
+  <div class="content">
+    <main class="settings">
+      <p class="section-label">Affichage et performances</p>
+      <div class="row" id="row-render" data-row="0" tabindex="0">
+        <span class="number">01</span><span class="label">Résolution de rendu<small class="sub">Détail de l’image du jeu · après redémarrage</small></span>
+        <span class="change"><button class="step" data-setting="render" data-dir="-1" aria-label="Réduire la résolution de rendu">‹</button><output class="value" id="render-value">1280 × 720</output><button class="step" data-setting="render" data-dir="1" aria-label="Augmenter la résolution de rendu">›</button></span>
+      </div>
+      <div class="row" id="row-output" data-row="1" tabindex="0">
+        <span class="number">02</span><span class="label">Résolution de sortie<small class="sub">Taille de l’image envoyée à l’écran · après redémarrage</small></span>
+        <span class="change"><button class="step" data-setting="output" data-dir="-1" aria-label="Réduire la résolution de sortie">‹</button><output class="value" id="output-value">1920 × 1080</output><button class="step" data-setting="output" data-dir="1" aria-label="Augmenter la résolution de sortie">›</button></span>
+      </div>
+      <div class="row" id="row-cap" data-row="2" tabindex="0">
+        <span class="number">03</span><span class="label">Limite d’images par seconde<small class="sub">Réglage appliqué immédiatement</small></span>
+        <span class="change"><button class="step" data-setting="cap" data-dir="-1" aria-label="Réduire la limite d’images par seconde">‹</button><output class="value" id="cap-value">Auto</output><button class="step" data-setting="cap" data-dir="1" aria-label="Augmenter la limite d’images par seconde">›</button></span>
+      </div>
+      <div class="row" id="row-overlay" data-row="3" tabindex="0">
+        <span class="number">04</span><span class="label">Compteur FPS<small class="sub">Affiche les images par seconde à l’écran</small></span>
+        <span class="change"><button class="step" data-setting="overlay" data-dir="-1" aria-label="Désactiver ou activer le compteur">‹</button><output class="value" id="overlay-value">Oui</output><button class="step" data-setting="overlay" data-dir="1" aria-label="Désactiver ou activer le compteur">›</button></span>
+      </div>
+      <div class="notice" id="notice" role="status" aria-live="polite"></div>
+    </main>
+    <aside class="details">
+      <div class="eyebrow">Détail du réglage</div><h2 id="detail-title">Résolution de rendu</h2>
+      <div class="description" id="description"></div>
+      <div class="hint"><strong>↑ ↓</strong> Choisir　 <strong>← →</strong> Modifier<br><strong>A</strong> Modifier　 <strong>Y</strong> Appliquer　 <strong>B</strong> Retour</div>
+    </aside>
+  </div>
+  <footer>
+    <span class="prompt"><i class="key">B</i> Retour</span><span class="prompt"><strong>← →</strong> Modifier</span>
+    <span class="spacer"></span><button class="footer-button" id="back">Retour</button><button class="footer-button apply" id="apply">Appliquer　<i class="key">Y</i></button>
+  </footer>
+</section>
+<script>
+'use strict';
+const bridge=window.VideoSettings;
+const resolutions={render:[[640,360],[960,540],[1280,720],[1920,1080]],output:[[960,540],[1280,720],[1920,1080]]};
+const caps=[0,30,40,60,120];
+let saved={render:[1280,720],output:[1920,1080],cap:0,overlay:true};
+let draft=JSON.parse(JSON.stringify(saved)),selected=0;
+const rows=[...document.querySelectorAll('.row')];
+const descriptions=[
+  'Détermine la résolution utilisée pour dessiner le monde. Une valeur plus basse peut réduire la charge graphique. Le changement prend effet au prochain démarrage.',
+  'Détermine la taille de l’image présentée à l’écran. Le changement prend effet au prochain démarrage.',
+  'Limite le rythme d’affichage pour stabiliser la cadence et réduire la consommation. Les performances réelles dépendent de la scène.',
+  'Affiche ou masque le compteur d’images par seconde dans le coin de l’écran. Le changement est immédiat.'
+];
+function same(a,b){return JSON.stringify(a)===JSON.stringify(b)}
+function resolutionIndex(key,value){return Math.max(0,resolutions[key].findIndex(v=>same(v,value)))}
+function tell(message,kind=''){const n=document.getElementById('notice');n.textContent=message;n.className='notice '+kind}
+function paint(){
+  document.getElementById('render-value').textContent=draft.render.join(' × ');
+  document.getElementById('output-value').textContent=draft.output.join(' × ');
+  document.getElementById('cap-value').textContent=draft.cap?draft.cap+' FPS':'Auto';
+  document.getElementById('overlay-value').textContent=draft.overlay?'Oui':'Non';
+  rows.forEach((row,i)=>row.classList.toggle('selected',i===selected));
+  const labels=['Résolution de rendu','Résolution de sortie','Limite d’images par seconde','Compteur FPS'];
+  document.getElementById('detail-title').textContent=labels[selected];
+  document.getElementById('description').textContent=descriptions[selected];
+}
+function focusRow(index){selected=(index+rows.length)%rows.length;paint()}
+function change(key,dir){
+  if(key==='render'||key==='output'){
+    const list=resolutions[key],i=list.findIndex(v=>same(v,draft[key]));draft[key]=JSON.parse(JSON.stringify(list[(i+dir+list.length)%list.length]));
+  }else if(key==='cap'){
+    const i=caps.indexOf(draft.cap);draft.cap=caps[(i+dir+caps.length)%caps.length];
+  }else draft.overlay=!draft.overlay;
+  paint();tell(same(saved,draft)?'':'Modifications en attente. Appuyez sur Y pour appliquer.');
+}
+function apply(){
+  if(!bridge){tell('Enregistrement indisponible.','error');return}
+  try{
+    if(!bridge.save(draft.render[0],draft.render[1],draft.output[0],draft.output[1],draft.cap,draft.overlay)){
+      tell('Impossible d’enregistrer les paramètres.','error');return;
+    }
+    const restart=!same(saved.render,draft.render)||!same(saved.output,draft.output);
+    saved=JSON.parse(JSON.stringify(draft));
+    tell(restart?'Paramètres enregistrés. Redémarrez le jeu pour appliquer les résolutions.':'Paramètres appliqués.','success');
+  }catch(e){tell('Impossible d’enregistrer les paramètres.','error')}
+}
+function close(){if(bridge)bridge.close()}
+window.videoOpen=function(){
+  try{
+    const s=JSON.parse(bridge.read());
+    saved={render:resolutions.render[resolutionIndex('render',s.render)],output:resolutions.output[resolutionIndex('output',s.output)],cap:caps.includes(s.fps)?s.fps:0,overlay:!!bridge.overlay()};
+    const active=s.activeOutput&&s.activeOutput[0]?s.activeOutput.join(' × '):'Détection…';
+    document.getElementById('active-output').textContent=active;
+  }catch(e){tell('Lecture des paramètres impossible.','error')}
+  draft=JSON.parse(JSON.stringify(saved));selected=0;paint();
+};
+document.querySelectorAll('.step').forEach(button=>button.addEventListener('click',event=>{
+  event.stopPropagation();const row=button.closest('.row');focusRow(+row.dataset.row);change(button.dataset.setting,+button.dataset.dir);
+}));
+rows.forEach(row=>row.addEventListener('click',()=>focusRow(+row.dataset.row)));
+document.getElementById('apply').addEventListener('click',apply);
+document.getElementById('back').addEventListener('click',close);
+window.videoKey=function(key){
+  if(key==='up')focusRow(selected-1);
+  else if(key==='down')focusRow(selected+1);
+  else if(key==='left'||key==='right')change(['render','output','cap','overlay'][selected],key==='right'?1:-1);
+  else if(key==='accept')change(['render','output','cap','overlay'][selected],1);
+  else if(key==='apply')apply();
+  else if(key==='back')close();
+};
+document.addEventListener('keydown',event=>{
+  const map={ArrowUp:'up',ArrowDown:'down',ArrowLeft:'left',ArrowRight:'right',Enter:'accept',Escape:'back'};
+  if(map[event.key]){event.preventDefault();window.videoKey(map[event.key])}
+});
+paint();
+</script>
+</body>
+</html>

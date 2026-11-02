@@ -1,0 +1,13 @@
+#version 450
+// Preserve CPU updates to words the guest GPU shader left untouched.
+// Adapted from PokeZ-ARecomp's gfast_merge.comp (MIT; see accompanying license).
+layout(local_size_x = 256) in;
+layout(std430, set = 0, binding = 0) buffer Destination { uint destination[]; };
+layout(std430, set = 0, binding = 1) readonly buffer Result { uint result[]; };
+layout(std430, set = 0, binding = 2) readonly buffer Original { uint original[]; };
+layout(push_constant) uniform Parameters { uint destination_word; uint words; } pc;
+void main() {
+    uint i = gl_GlobalInvocationID.x;
+    if (i < pc.words && result[i] != original[i])
+        destination[pc.destination_word + i] = result[i];
+}

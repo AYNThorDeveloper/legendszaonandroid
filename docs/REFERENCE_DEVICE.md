@@ -1,0 +1,17 @@
+# Reference device: AYN Thor
+
+**The AYN Thor is the reference model for this Android project.** Local performance descriptions, controller instructions and compatibility observations refer to that device. Other Android devices are unverified, even when they have an ARM64 CPU and Vulkan support.
+
+| Item | Reference |
+|---|---|
+| Device | AYN Thor |
+| SoC | Snapdragon 8 Gen 2 |
+| Architecture / graphics API | ARM64 / Vulkan |
+| Local controls | Integrated controller; L3 + R3 opens video settings |
+| Host used to build the export | macOS ARM64 |
+
+Z-A: the project owner reports 50–60 fps at 1080p with the local Turnip 27 configuration. See the README for known animation, collision and scene-object bugs. The build defaults and a newly installed device do not automatically reproduce every local environment setting.
+
+Driver binaries, device-specific private data and firmware are not distributed. For reports from another device, provide its exact model, SoC, Android version, driver and render/output settings, and state that it differs from the AYN Thor reference model.
+
+Inherited upstream Apple documentation is retained for source context. It does not change this Android fork's reference device. Follow the current README.md and BUILD_ANDROID.md for setup.

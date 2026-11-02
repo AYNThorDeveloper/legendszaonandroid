@@ -1,0 +1,14 @@
+{
+  "title_id": "0100F43008C44000",
+  "version_label": "2.0.2",
+  "exefs_sha256": {
+    "main": "2308530d73b7fea60bb845ad57d9b1f10d3ff213f89c01f73627dc8224f43ef9",
+    "main.npdm": "9960d4579cb8f8aedfac6e51d8452e31c5acdd0e39308cfc0d4a42955d956058",
+    "rtld": "714ead44bbd81ccba54509399a5dca59c1a24e068b384292f6755829f1e9d523",
+    "sdk": "0449487b457490afae879c08d6a90dd28295eaaa5c55677089a46b13991afbab"
+  },
+  "romfs": {
+    "size": 5989104840,
+    "sha256": "0ad824b860ebbd8dc512000a5789917241ef047f1ecea223344c3022a2377e90"
+  }
+}
