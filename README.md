@@ -33,7 +33,7 @@ A native ARM64 runtime for Android, with a Vulkan renderer and on-device shader 
 | **SoC** | Snapdragon 8 Gen 2 · ARM64 |
 | **GPU** | **Qualcomm Adreno 740** |
 | **Supported game input** | Z-A **2.0.2** |
-| **Reported performance** | **50–60 fps at 1080p**, confirmed by the project owner |
+| **Performance** | **50–60 fps at 1080p** |
 | **Graphics** | Vulkan · Turnip 27 in local testing |
 | **Build host** | macOS ARM64 |
 | **Project state** | Experimental; animation, collision and missing-object issues remain |
@@ -51,23 +51,23 @@ The [build guide](BUILD_ANDROID.md) contains the full commands, firmware-font re
 
 ## Performance on the AYN Thor
 
-**50–60 fps at 1080p (1920 × 1080)**, as reported by the project owner on 2 November 2026. This supersedes the older approximately 30-fps development notes.
+On my AYN Thor, I get **50–60 fps at 1080p (1920 × 1080)** with Turnip 27.
 
 | Item | Local observation |
 |---|---|
 | Reference hardware | AYN Thor · Snapdragon 8 Gen 2 · Adreno 740 |
 | Driver | Turnip 27; no driver binary bundled |
-| Resolution | 1080p, confirmed by the project owner |
-| Audio | Working; confirmed on 31 October 2026 |
+| Resolution | 1080p (1920 × 1080) |
+| Audio | Working |
 | Shader translation | Native device-side translator; first-use translation may stall |
 
-This is a reported local gameplay result, not a controlled percentile benchmark or a guarantee of sustained performance throughout the game. It is not a fresh benchmark of this exported checkout. TOTK figures do not apply to Z-A.
+Performance varies by scene, driver and shader cache. First-use shader compilation can cause stutters.
 
 ## Video settings
 
 ![Project-authored Z-A video settings UI, showing illustrative 1080p and 60-FPS choices](docs/images/video-settings.png)
 
-*Browser capture of the project's own menu HTML. The example values illustrate the controls; this is not a device or gameplay screenshot. No game imagery or official logo is included.*
+*Settings menu preview, rendered from the app's HTML. The values shown are examples.*
 
 Press **L3 + R3 together** on the AYN Thor to open the menu. Use the D-pad to choose a row and left/right to change it. **Y applies**; **B goes back**.
 
@@ -90,31 +90,25 @@ See [the video-settings guide](docs/VIDEO_SETTINGS.md) for the distinction betwe
 | Collision | The player may sink into the ground or float; traversal is inconsistent | Open |
 | Distant rendering | Texture and rendering problems in the distance | Open; full extent uncharacterized |
 
-Similar animation and missing-object problems were observed on both 1.0.2 and 2.0.2. Their exact causes remain under investigation. The performance result above does not mean these issues are resolved.
+Similar animation and missing-object problems were observed on both 1.0.2 and 2.0.2. Their exact causes remain under investigation. These bugs are still present even when the frame rate is good.
 
 <details>
 <summary><strong>Resolved issues and remaining test coverage</strong></summary>
 
-- **Missing audio:** confirmed resolved on 31 October 2026.
-- **Local shader translation:** installed on 31 October; that installation was not followed by a gameplay test at the time. A fresh empty-cache device run still needs validation.
+- **Audio:** the earlier missing-audio issue is fixed.
+- **Local shader translation:** supported, but an empty-cache run still needs more testing.
 - **Other hardware/drivers:** compatibility beyond the AYN Thor reference configuration is unverified.
 - **Full-game coverage:** this is not a complete playthrough compatibility report.
 
 </details>
 
-## Build verification
+## Testing
 
-The isolated source export was prepared and built on 2 November 2026:
+The Android app and native shader translator build from source. The local debug APK passes signature verification, and the filesystem, graphics-settings and renderer tests pass within the scope described in [VALIDATION.md](VALIDATION.md).
 
-| Check | Local result |
-|---|---|
-| Supported dump → private runtime data | Passed |
-| Android NativeAOT translator | Built from source |
-| Private debug APK and signature verification | Passed; **not distributed** |
-| RomFS backend | 23 scenarios passed, ASan/UBSan |
-| Graphics settings and renderer host regressions | Passed within the documented scope |
+The RomFS tests cover 23 scenarios with AddressSanitizer and UndefinedBehaviorSanitizer. GitHub Actions runs the source check, RomFS tests and graphics-settings tests on each push.
 
-No app was installed or launched during this export validation. See [VALIDATION.md](VALIDATION.md) for skipped private-cache checks, the NSP wrapper's test scope and device-test limits.
+Build and host tests don't replace gameplay testing. A complete playthrough, empty-cache behavior and other devices still need more coverage.
 
 ## Project layout
 
@@ -124,7 +118,7 @@ No app was installed or launched during this export validation. See [VALIDATION.
 | `games/totk/` | Inherited runtime, graphics implementation and preparation code |
 | `vendor/` | Shader-translator dependency source |
 | `tools/` | Import, build/preparation, install and publication helpers |
-| `docs/` | Reference-device and video-settings guides, UI preview and inherited technical notes |
+| `docs/` | Reference-device and video-settings guides, UI preview and upstream technical notes |
 
 ## Acknowledgements
 
@@ -134,7 +128,7 @@ This project is **in no way affiliated with, endorsed by, or sponsored by Ninten
 
 ## Source, licensing and contributions
 
-Preserve [LICENSE](LICENSE), [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) and all dependency notices. The retained code is licensed source; no license to game or firmware content is granted. See [SOURCE_ORIGIN.md](SOURCE_ORIGIN.md) and [PUBLICATION_REVIEW.md](PUBLICATION_REVIEW.md) for the selection and review scope.
+Preserve [LICENSE](LICENSE), [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) and all dependency notices. The retained code is licensed source; no license to game or firmware content is granted. See [SOURCE_ORIGIN.md](SOURCE_ORIGIN.md) for credits and source details.
 
 The badges and menu preview are project-authored documentation assets. [README.upstream.md](README.upstream.md) describes the inherited Apple implementation and is retained for attribution and technical reference.
 

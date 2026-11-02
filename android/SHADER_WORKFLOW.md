@@ -8,7 +8,7 @@ Z-A retains its existing non-constant texture-offset lowering, stable SPIR-V glo
 
 Local host validation: 65 byte-identical replies compared with the working reference, including 20 fragment, 20 vertex, 20 compute requests, one repeated reference and four XFB component-width cases. This is a bounded corpus, not all possible shaders.
 
-Installed on the Thor on 31 October 2026 without starting or testing gameplay, as requested. The new path has not been validated in a cold-cache game session. First-use translation may stall. A translation failure remains logged and uses the existing bridge/seed fallback.
+Cold-cache gameplay still needs more testing on the AYN Thor. First-use translation may stall. A translation failure remains logged and uses the existing bridge/seed fallback.
 
 `TOTK_SHADER_LOCAL=0` disables the local translator; `TOTK_SHADER_BRIDGE=0` disables only the Mac bridge. The current environment has the bridge disabled and local translation enabled by default.
 

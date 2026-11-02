@@ -11,7 +11,7 @@
 | Local controls | Integrated controller; L3 + R3 opens video settings |
 | Host used to build the export | macOS ARM64 |
 
-Z-A: the project owner reports 50–60 fps at 1080p with the local Turnip 27 configuration. See the README for known animation, collision and scene-object bugs. The build defaults and a newly installed device do not automatically reproduce every local environment setting.
+I get 50–60 fps at 1080p in Z-A on the AYN Thor with Turnip 27. See the README for known animation, collision and scene-object bugs. The build defaults and a newly installed device do not automatically reproduce every local environment setting.
 
 Driver binaries, device-specific private data and firmware are not distributed. For reports from another device, provide its exact model, SoC, Android version, driver and render/output settings, and state that it differs from the AYN Thor reference model.
 

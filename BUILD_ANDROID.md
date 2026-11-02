@@ -21,7 +21,7 @@ python tools/prepare_za.py --exefs /absolute/path/to/exefs --romfs /absolute/pat
 bash android/game_activity/build_apk.sh
 ```
 
-The script writes private game-derived data into ../Uitgepakt beside the repository. Keep this directory private. The resulting APK is local output only and must never be published. The isolated source export was built locally on 2 November 2026. Installing and testing it on a fresh device remain separate validation steps. See VALIDATION.md.
+The script writes private game-derived data into ../Uitgepakt beside the repository. Keep this directory private. The resulting APK is local output only and must never be published. For test coverage and remaining device checks, see [VALIDATION.md](VALIDATION.md).
 
 The runtime uses /data/local/tmp/za-android-202 on Android. It needs main.patched.bin, sdk.patched.bin, romfs.bin and runtime-index.bin directly inside that device directory, plus the shared-fonts subdirectory. Device installation and driver choice are manual; no personal environment, driver, save or shader seed is included. The native translator builds from source and can generate missing shaders locally.
 
