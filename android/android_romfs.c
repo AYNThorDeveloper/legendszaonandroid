@@ -347,7 +347,8 @@ unsigned runtime_romfs_open_directory(uint64_t *out,const char *path,int mode) {
     if(len+2>sizeof relative){pthread_mutex_unlock(&lock);return INVALID;}
     memcpy(relative,tail,len);relative[len]=0;
     if(len&&!romfs_path_valid_relative(relative)){pthread_mutex_unlock(&lock);return INVALID;}
-    if(len)relative[len++]='/';relative[len]=0;
+    if (len) relative[len++] = '/';
+    relative[len] = 0;
     uint64_t first=len?lower(relative):0,end=first;
     while(end<count&&!strncmp(name_of(entry(end)),relative,len))end++;
     if(len&&first==end){pthread_mutex_unlock(&lock);return NOT_FOUND;}

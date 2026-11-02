@@ -16,7 +16,7 @@ The publication source was copied into an isolated temporary checkout. Game inpu
 | Graphics-settings regressions | Passed, ASan/UBSan |
 | Renderer host regression script | Passed; its synthetic checks completed |
 | Installation plan without device writes | Passed |
-| Production C/header/assembly/C#/GLSL source comparison | Final publication files match the successful build checkout |
+| Production source comparison | Pre-upload sources matched the successful build checkout; a later whitespace-only RomFS cleanup for GCC is covered by the host regression suite |
 | Source-only publication guard | Passed before packaging |
 
 The host used macOS ARM64, Python 3.14, JDK 21, Android SDK/build-tools 35, Android NDK 30 and .NET SDK 10.0.403. Package restoration needed network access. NativeAOT emitted reflection-analysis warnings; successful compilation is not proof that every shader path works. No device was installed, launched or modified during this validation.
@@ -37,3 +37,5 @@ Supported TOTK 1.4.3 and Z-A 2.0.2 runtime preparation was exercised using exist
 - Source selection and licensing review scope is documented in PUBLICATION_REVIEW.md. Pattern scans are not a legal clearance.
 
 The Z-A install planner also verified all six supplied private system-font digests. No fonts are distributed. The storage-merge support shader was regenerated from its MIT-licensed GLSL during the build.
+
+The first hosted Linux run identified a GCC misleading-indentation warning in RomFS directory handling. The two existing statements were placed on separate lines without changing the condition or behavior. The 23-scenario local regression suite was rerun; hosted results are available in Actions.
